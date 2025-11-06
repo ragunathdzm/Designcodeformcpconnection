@@ -1,15 +1,18 @@
 import { useState, useRef, KeyboardEvent } from 'react';
-import { Minus, Square, X, Bell, Plus, Shuffle, Clock, ChevronDown, ArrowUp, ChevronRight, Plug, Terminal } from 'lucide-react';
+import { Minus, Square, X, Bell, Plus, Shuffle, Clock, ChevronDown, ArrowUp, ChevronRight, Plug, Terminal, HelpCircle } from 'lucide-react';
 import { Sparkles } from 'lucide-react';
 import { MCPConnectionDialog } from './MCPConnectionDialog';
 import { MCPToolsPanel } from './MCPToolsPanel';
+import { ServerSetupGuide } from './ServerSetupGuide';
 import { useMCPConnection } from '../hooks/useMCPConnection';
 import { Badge } from './ui/badge';
 import { ScrollArea } from './ui/scroll-area';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
 
 export function ChatArea() {
   const [showMCPDialog, setShowMCPDialog] = useState(false);
   const [showToolsPanel, setShowToolsPanel] = useState(false);
+  const [showSetupGuide, setShowSetupGuide] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   
@@ -48,6 +51,25 @@ export function ChatArea() {
               <Terminal size={14} />
               <span>MCP Tools</span>
             </button>
+            <Sheet open={showSetupGuide} onOpenChange={setShowSetupGuide}>
+              <SheetTrigger asChild>
+                <button className="flex items-center gap-2 px-2 py-1 text-sm text-gray-400 hover:text-gray-200 hover:bg-gray-700 rounded transition-colors">
+                  <HelpCircle size={14} />
+                  <span>Setup Help</span>
+                </button>
+              </SheetTrigger>
+              <SheetContent side="right" className="bg-[#1a1a1a] border-gray-800 text-gray-200 w-[600px] max-w-[90vw] overflow-y-auto">
+                <SheetHeader>
+                  <SheetTitle className="text-gray-200">MCP Server Setup Guide</SheetTitle>
+                  <SheetDescription className="text-gray-400">
+                    Follow these steps to connect your Kali Linux MCP server
+                  </SheetDescription>
+                </SheetHeader>
+                <div className="mt-6">
+                  <ServerSetupGuide />
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
           <div className="text-sm text-gray-400">Claude — Control+Alt+Space</div>
           <div className="flex-1 flex items-center justify-end gap-4">

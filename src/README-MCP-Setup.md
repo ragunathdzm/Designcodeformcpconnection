@@ -1,6 +1,6 @@
 # MCP Server Connection Guide
 
-This application connects to your Kali Linux MCP server running at `http://192.168.1.93:5000/`
+This application connects to your Kali Linux MCP server running at `http://192.168.1.99:5000/`
 
 ## Prerequisites
 
@@ -145,7 +145,7 @@ def chat():
     })
 
 if __name__ == '__main__':
-    app.run(host='192.168.1.93', port=5000, debug=True)
+    app.run(host='192.168.1.99', port=5000, debug=True)
 ```
 
 ## Running Your Server
@@ -153,12 +153,12 @@ if __name__ == '__main__':
 1. Make sure your MCP server is running:
    ```bash
    cd D:/MCP_kali/MCP-Kali-Server/
-   python mcp_server.py --server http://192.168.1.93:5000/
+   python mcp_server.py --server http://192.168.1.99:5000/
    ```
 
 2. Verify it's accessible:
    ```bash
-   curl http://192.168.1.93:5000/health
+   curl http://192.168.1.99:5000/health
    ```
 
 3. Connect from this application by clicking "Connect to Kali Linux MCP Server"
@@ -166,7 +166,7 @@ if __name__ == '__main__':
 ## Troubleshooting
 
 ### Connection Failed
-- Check if the server is running: `curl http://192.168.1.93:5000/health`
+- Check if the server is running: `curl http://192.168.1.99:5000/health`
 - Verify firewall allows port 5000
 - Check if CORS is enabled on the server
 
@@ -179,12 +179,12 @@ if __name__ == '__main__':
 - Check network connectivity between browser and server
 
 ### Server Not Responding
-- Ensure server is bound to `0.0.0.0` or `192.168.1.93`, not `127.0.0.1`
+- Ensure server is bound to `0.0.0.0` or `192.168.1.99`, not `127.0.0.1`
 - Check server logs for errors
 - Verify the port (5000) is not blocked
 
 ## Network Requirements
 
-- This browser app must be able to reach `http://192.168.1.93:5000/`
+- This browser app must be able to reach `http://192.168.1.99:5000/`
 - Both devices must be on the same network OR port forwarding must be configured
 - Firewall must allow incoming connections on port 5000
